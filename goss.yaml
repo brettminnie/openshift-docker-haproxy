@@ -1,0 +1,61 @@
+file:
+  /config/haproxy.cfg:
+    exists: true
+    owner: root
+    group: root
+    filetype: file
+    contains: [ ]
+  /etc/haproxy/conf.d:
+    exists: true
+    mode: "0755"
+    size: 4096
+    owner: root
+    group: root
+    filetype: directory
+    contains: [ ]
+  /usr/local/bin/entrypoint.sh:
+    exists: true
+    owner: root
+    group: root
+    filetype: file
+    contains: [ ]
+package:
+  haproxy:
+    installed: true
+    versions:
+      - 1.8.27
+  rsyslog:
+    installed: true
+    versions:
+      - 8.2102.0
+  supervisor:
+    installed: true
+    versions:
+      - 4.2.2
+port:
+  tcp:8080:
+    listening: true
+user:
+  haproxy:
+    exists: true
+    uid: 998
+    gid: 996
+    groups:
+      - haproxy
+    home: /var/lib/haproxy
+    shell: /sbin/nologin
+command:
+  haproxy -v:
+    exit-status: 0
+    stdout:
+      - HA-Proxy version 1.8.27-493ce0b 2020/11/06
+      - Copyright 2000-2020 Willy Tarreau <willy@haproxy.org>
+    stderr: [ ]
+    timeout: 0
+process:
+  haproxy:
+    running: true
+  rsyslogd:
+    running: true
+  supervisord:
+    running: true
