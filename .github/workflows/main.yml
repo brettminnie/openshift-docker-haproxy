@@ -25,7 +25,7 @@ jobs:
       - name: Install Goss
         uses: e1himself/goss-installation-action@v1.1.0
       - name: Execute Goss tests
-        run: dgoss run --privileged --net=host ${{ secrets.DOCKERHUB_USERNAME }}/haproxy:${{ github.sha }}
+        run: GOSS_SLEEP=15 dgoss run --privileged --net=host ${{ secrets.DOCKERHUB_USERNAME }}/haproxy:${{ github.sha }}
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
