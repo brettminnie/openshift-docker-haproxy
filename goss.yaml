@@ -38,8 +38,8 @@ port:
 user:
   haproxy:
     exists: true
-    uid: 998
-    gid: 996
+    uid: 997
+    gid: 995
     groups:
       - haproxy
     home: /var/lib/haproxy
